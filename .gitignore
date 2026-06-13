@@ -1,0 +1,23 @@
+# Virtual environment
+venv/
+.venv/
+env/
+
+# Python cache
+**/__pycache__/
+*.pyc
+*.pyo
+*.pyd
+
+# Environment variables (secrets)
+.env
+
+# Vector Database data directory
+chroma_data/
+
+# OS specific files
+.DS_Store
+Thumbs.db
+
+# Uploads directory (temporary files)
+uploads/

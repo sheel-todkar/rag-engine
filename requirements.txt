@@ -1,0 +1,20 @@
+# --- Web Framework ---
+fastapi>=0.115.0
+uvicorn>=0.34.0
+pydantic>=2.11.0
+python-multipart>=0.0.20
+
+# --- Environment ---
+python-dotenv>=1.0.0
+
+# --- LLM ---
+groq>=0.25.0
+
+# --- Vector DB ---
+chromadb>=1.0.0
+
+# --- Embeddings ---
+sentence-transformers>=3.4.0
+
+# --- PDF Processing ---
+PyPDF2>=3.0.1
