@@ -21,7 +21,10 @@ INITIALIZATION ORDER:
     6. FastAPI app                 — mounts the router
 """
 
+import os
 from fastapi import FastAPI
+from fastapi.staticfiles import StaticFiles
+from fastapi.responses import FileResponse
 from app.embeddings import EmbeddingModel
 from app.vector_store import VectorStore
 from app.llm import LLMClient
@@ -42,6 +45,10 @@ app = FastAPI(
     version="1.0.0",
 )
 
+# --- Mount Static Files ---
+# Serve frontend assets (HTML, CSS, JS) from the static folder
+app.mount("/static", StaticFiles(directory="app/static"), name="static")
+
 # --- Wire Routes ---
 
 router = create_router(llm=llm_client, vector_store=vector_store)
@@ -50,11 +57,8 @@ app.include_router(router)
 
 @app.get("/")
 def root():
-    """Root endpoint — confirms the server is running."""
-    return {
-        "message": "RAG Engine is running",
-        "docs": "/docs",
-    }
+    """Serve the single-page RAG web interface."""
+    return FileResponse(os.path.join("app", "static", "index.html"))
 
 
 # --- Direct Run Support ---
